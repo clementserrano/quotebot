@@ -1,7 +1,7 @@
 # quotebot
 Play an audio file from the quotes folder
 
-## Bot Discord 0%
+## Bot Discord
 - Mention bot, if you are in a voice channel, joins you and play a random quote
 - Stays in the channel and leave after 5 min of inactivity
 

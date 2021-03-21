@@ -25,6 +25,9 @@
   },
   "homepage": "https://github.com/clementserrano/testnpc#readme",
   "dependencies": {
-    "discord.js": "^12.5.1"
+    "@discordjs/opus": "^0.5.0",
+    "discord.js": "^12.5.1",
+    "ffmpeg-static": "^4.2.8",
+    "file-system": "^2.2.2"
   }
 }

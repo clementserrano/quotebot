@@ -19,4 +19,4 @@ Play an audio file from the quotes folder
     "musicPlayer": "<music_player_path>"
 }
 ```
-*Set musicPlayer to "explorer.exe shell:C:\\Program Files\\WindowsApps\\Microsoft.ZuneMusic_*_x64__8wekyb3d8bbwe"* to play with groove music
+*Set musicPlayer to "explorer.exe shell:C:\\Program Files\\WindowsApps\\Microsoft.ZuneMusic_\*_x64__8wekyb3d8bbwe"* to play with groove music

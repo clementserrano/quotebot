@@ -1,4 +1,4 @@
-import { Client, Message, StreamDispatcher, VoiceChannel, VoiceConnection } from 'discord.js';
+import { Client, Message, StreamDispatcher, StreamOptions, VoiceChannel, VoiceConnection } from 'discord.js';
 import { getQuotePath } from './functions';
 import secrets from './secrets.json';
 
@@ -24,7 +24,8 @@ async function onMessage(message: Message) {
         if (message.content.includes('help')) {
             message.channel.send("Mention this bot to play a random quote. Add : \n" +
                 "- loop : to play quotes after quotes\n" +
-                "- leave : to disconnect bot from the channel");
+                "- leave : to disconnect bot from the channel\n" +
+                "- loud ;)");
         } else {
             if (message.member && message.member.voice.channel) {
                 channel = message.member.voice.channel;
@@ -41,6 +42,8 @@ async function onMessage(message: Message) {
                 } else if (message.content.includes('leave') && channel) {
                     channel.leave();
                     loop = false;
+                } else if (message.content.includes('loud') && channel) {
+                    playQuote(6);
                 } else {
                     playQuote();
                 }
@@ -49,15 +52,19 @@ async function onMessage(message: Message) {
     }
 }
 
-async function playQuote(): Promise<StreamDispatcher> {
+async function playQuote(volume?: number): Promise<StreamDispatcher> {
     const path = await getQuotePath();
     console.log(path)
-    return connection.play(path);
+    const opts: StreamOptions = {};
+    if (volume) {
+        opts.volume = volume;
+    }
+    return connection.play(path, opts);
 }
 
 async function loopQuote() {
     if (loop) {
         let stream = await playQuote();
-        stream.on("finish", () => loopQuote())
+        stream.on("finish", () => setTimeout(loopQuote, 2000));
     }
 }
